@@ -42,6 +42,14 @@ const options = Object.values(BannerLabel).map((label) => ({
   label,
 }));
 
+const Checkbox = styled.input`
+  accent-color: #00754a;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+`;
+
+
 export const BannerForm: FC<{
   banner?: Partial<BannerInterface>;
   onSave: (banner: Partial<CreateBanner>) => void;
@@ -52,6 +60,7 @@ export const BannerForm: FC<{
   const contentInput = useFormInput({ initialValue: banner?.content ?? "" });
   const [color, setColor] = useState(banner?.color ?? "#772932");
   const [label, setLabel] = useState(banner?.label ?? BannerLabel.ORDER_NOW);
+  const [imageFirst, setImageFirst] = useState(banner.imageFirst ?? false);
   const [userView, setUserView] = useState(alwaysUserView);
   const [file, setFile] = useState<File | undefined>();
   return userView ? (
@@ -59,8 +68,9 @@ export const BannerForm: FC<{
       onClose={() => {
         setUserView(false);
       }}
-      imageUrl={ file ? getFileSrc(file) : banner.imageUrl}
+      imageUrl={file ? getFileSrc(file) : banner.imageUrl}
       banner={{
+        imageFirst,
         title: titleInput.value,
         content: contentInput.value,
         color,
@@ -96,7 +106,7 @@ export const BannerForm: FC<{
       <Row>
         <Title>Image:</Title>
         <Input
-            accept='image/*'
+          accept="image/*"
           type="file"
           onChange={(event) => {
             const file = event.target.files?.[0];
@@ -104,6 +114,14 @@ export const BannerForm: FC<{
               setFile(file);
             }
           }}
+        />
+      </Row>
+      <Row>
+        <Title>Image forst:</Title>
+        <Checkbox
+            type="checkbox"
+            checked={imageFirst}
+            onChange={() => setImageFirst(prev => !prev)}
         />
       </Row>
       <Controls>
@@ -115,6 +133,7 @@ export const BannerForm: FC<{
             onSave({
               title: titleInput.value,
               content: contentInput.value,
+                imageFirst,
               color,
               label,
               imageUrl: file,
@@ -124,7 +143,11 @@ export const BannerForm: FC<{
           Save
         </Button>
       </Controls>
-      <Button disabled={!(banner.imageUrl || file)} $colorScheme="primary" onClick={() => setUserView(true)}>
+      <Button
+        disabled={!(banner.imageUrl || file)}
+        $colorScheme="primary"
+        onClick={() => setUserView(true)}
+      >
         Preview
       </Button>
     </BannerStyled>

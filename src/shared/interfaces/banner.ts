@@ -12,18 +12,21 @@ export interface Banner {
   color: string;
   imageUrl: string;
   label: BannerLabel;
+  imageFirst: boolean;
 }
 export interface NoImageBanner {
   title: string;
   content: string;
   color: string;
   label: BannerLabel;
+  imageFirst: boolean;
 }
 export interface CreateBanner {
   title: string;
   content: string;
   color: string;
   label: BannerLabel;
+  imageFirst: boolean;
   imageUrl: File;
 }
 export interface BannerEntity {
@@ -32,6 +35,7 @@ export interface BannerEntity {
   content: string;
   color: string;
   imageUrl: string;
+  imageFirst: boolean;
   label: BannerLabel;
 }
 export interface BannerMongoEntity extends MongoEntity{
@@ -39,5 +43,6 @@ export interface BannerMongoEntity extends MongoEntity{
   imageUrl: string;
   content: string;
   color: string;
+  imageFirst: boolean;
   label: BannerLabel;
 }

@@ -15,9 +15,9 @@ import { useAuthContext } from "@src/frontend/common/context/AuthContext";
 import { BeautifulInput } from "@src/frontend/common/components/BeautifulInput";
 
 export const SignInFormContainer = styled.form`
-  border: 1px solid gray;
+  box-shadow: 0 2px 4px rgba(0,0,0,.07), 0 4px 5px rgba(0,0,0,.06), 0 1px 10px rgba(0,0,0,.1);
   border-radius: 12px;
-  padding: 20px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   gap: 30px;

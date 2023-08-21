@@ -7,8 +7,8 @@ import { createClick } from "@src/frontend/common/services/api/stats";
 import styled from "styled-components";
 
 const Banners = styled.main`
-  max-width: 800px;
-  padding: 30px;
+  padding-top: 40px;
+  width: min(1440px, 100%);
   display: flex;
   flex-direction: column;
   gap: 40px;

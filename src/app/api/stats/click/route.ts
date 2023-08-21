@@ -15,6 +15,7 @@ const schema = Joi.object({
     content: Joi.string().required(),
     id: Joi.string().required(),
     imageUrl: Joi.string().uri().required(),
+    imageFirst: Joi.boolean().required(),
     color: Joi.string()
     .regex(/^#[A-Fa-f0-9]{6}$/)
     .required(),
@@ -68,7 +69,6 @@ export const POST = async (req: NextRequest) => {
             status: 201,
         });
     } catch (error) {
-        console.log({error})
         return new Response(
             JSON.stringify({
                 // @ts-ignore

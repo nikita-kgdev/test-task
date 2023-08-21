@@ -7,7 +7,7 @@ const Wrapper = styled.main`
   align-items: center; 
   padding: 40px;
   gap: 40px;
-  max-width: 500px;
+  width: min(600px, 100%);
   margin: 0 auto;
 `;
 
@@ -19,7 +19,7 @@ const Title = styled.h1`
 
 const ContentContainer = styled.div`
   margin: 20px;
-  width: max(330px, 100%);
+  width: min(500px, 100%);
 `;
 
 export const FormWrapper: FC<{ children: ReactNode; title: string }> = ({

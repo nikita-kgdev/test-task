@@ -8,7 +8,7 @@ export const createBannerFormData = (banner:Partial<CreateBanner>) => {
                 data.append(key, value, (Math.random() + 1).toString(36).substring(7));
                 continue;
             }
-            data.append(key, value);
+            data.append(key, String(value));
         }
     }
     return data;

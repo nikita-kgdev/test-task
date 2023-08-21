@@ -20,6 +20,11 @@ const Banner = new Schema<BannerMongoEntity>({
     required: true,
     enum: Object.values(BannerLabel),
   },
+  imageFirst: {
+    type: Boolean,
+    required: true,
+    default: true
+  },
   imageUrl: {
     type: String,
     required: true,

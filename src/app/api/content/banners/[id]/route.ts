@@ -15,6 +15,7 @@ import { Params } from "@src/shared/interfaces/params";
 const schema = Joi.object({
   title: Joi.string().optional(),
   content: Joi.string().optional(),
+  imageFirst: Joi.boolean().optional(),
   color: Joi.string()
     .regex(/^#[A-Fa-f0-9]{6}$/)
     .optional(),

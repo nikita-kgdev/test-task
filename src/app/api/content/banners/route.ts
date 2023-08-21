@@ -12,6 +12,7 @@ import { NextRequest, NextResponse } from "next/server";
 const bannerScheme = Joi.object({
   title: Joi.string().required(),
   content: Joi.string().required(),
+  imageFirst: Joi.boolean().required(),
   color: Joi.string()
     .regex(/^#[A-Fa-f0-9]{6}$/)
     .required(),

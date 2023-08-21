@@ -4,42 +4,55 @@ import styled, { css } from "styled-components";
 import { Button } from "@src/frontend/common/components/Button";
 import { TfiClose } from "react-icons/tfi";
 
-const Container = styled.div`
+const Container = styled.div<{ color: string; imageFirst: boolean }>`
   display: flex;
+  flex-direction: ${({ imageFirst }) => (imageFirst ? "row" : "row-reverse")};
+  background-color: ${({ color }) => color};
 
   @media (max-width: 800px) {
     margin: 0 auto;
-    flex-direction: column-reverse;
-    align-items: center;
+    display: block;
   }
 `;
 
-const layout = css`
-    width: 50%;
-  @media (max-width: 800px) {
-    width: 100%;
-  }
-`;
-
-const BackGround = styled.div<{ color: string }>`
-  padding: 50px;
-  background-color: ${({ color }) => color};
+const TextData = styled.div`
   display: flex;
+  justify-content: space-around;
+  padding: 10% 50px;
   flex-direction: column;
+  align-items: center;
   gap: 30px;
   position: relative;
   text-align: center;
-  ${layout}
+  width: 50%;
+  @media (max-width: 1300px) {
+    padding: 3% 50px;
+  }
+  @media (max-width: 800px) {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 3% 20px;
+  }
 `;
 
 const Title = styled.h3`
   text-align: center;
-  font-size: 24px;
+  font-size: 50px;
   font-weight: 700;
+  @media (max-width: 1000px) {
+    font-size: 28px;
+  }
+`;
+
+const Content = styled.span`
+  text-align: center;
+  font-size: 24px;
 `;
 
 const UserClickButton = styled(Button)`
-  width: max(100%, 100px);
+  //width: max(100%, 100px);
+  font-size: 16px;
+  width: auto;
   border-color: #000;
   color: #000;
   background-color: transparent;
@@ -55,7 +68,18 @@ const CloseButton = styled(Button)`
 `;
 
 const Img = styled.img`
-  ${layout}
+  width: 100%;
+  aspect-ratio: 1/1;
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const UserBanner: FC<{
@@ -63,20 +87,22 @@ export const UserBanner: FC<{
   onUserClick?: () => void;
   onClose?: () => void;
   imageUrl?: string;
-}> = ({ banner, onUserClick, onClose, imageUrl= '' }) => {
+}> = ({ banner, onUserClick, onClose, imageUrl = "" }) => {
   return (
-    <Container>
-      <BackGround color={banner.color}>
+    <Container color={banner.color} imageFirst={banner.imageFirst}>
+      <ImageContainer>
+        <Img alt={banner.title} src={imageUrl} />
+      </ImageContainer>
+      <TextData>
         {onClose && (
           <CloseButton onClick={onClose}>
             <TfiClose />
           </CloseButton>
         )}
         <Title>{banner.title}</Title>
-        {banner.content}
+        <Content>{banner.content}</Content>
         <UserClickButton onClick={onUserClick}>{banner.label}</UserClickButton>
-      </BackGround>
-      <Img alt={banner.title} src={imageUrl} />
+      </TextData>
     </Container>
   );
 };
