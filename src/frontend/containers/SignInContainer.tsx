@@ -88,7 +88,7 @@ export const SignInContainer = () => {
   };
   return (
     <HeaderWrapper hideNav>
-      <FormWrapper title="Login to account">
+      <FormWrapper title="Sign in or create an account">
         <SignInFormContainer onSubmit={onSubmit}>
           <Message><Asterisk>*</Asterisk> indicates required field</Message>
           <BeautifulInput
@@ -119,7 +119,7 @@ export const SignInContainer = () => {
             <p>
               {" "}
               Don&apos;t have an account?{" "}
-              <Link href="/src/app/admin/sign-up">sign up</Link>
+              <Link href="/admin/sign-up">sign up</Link>
             </p>
             <Button $colorScheme="primary" $big>
               Sign in

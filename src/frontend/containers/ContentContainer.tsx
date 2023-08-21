@@ -17,6 +17,7 @@ import {
 } from "@src/frontend/common/services/api/banner";
 import { createBannerFormData } from "@src/frontend/utils/bannerFormData";
 import { MainLayout } from '@src/frontend/common/components/MainLayout';
+import { info } from '@src/frontend/utils/toast';
 
 const Container = styled(MainLayout)`
   margin: 0 auto;
@@ -42,6 +43,7 @@ export const ContentContainer = () => {
         (banners) => banners && { banners: [banner, ...banners.banners] },
       );
       setNewLabel(false);
+      info('banner created');
     },
   });
   const updateBannerMutation = useMutation(["updateBanner"], updateBanner, {
@@ -55,6 +57,7 @@ export const ContentContainer = () => {
             ),
           },
       );
+      info('banner updated');
     },
   });
   const deleteBannerMutation = useMutation(["deleteBanner"], deleteBanner, {

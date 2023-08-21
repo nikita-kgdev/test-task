@@ -60,10 +60,15 @@ const LogoNavLink = styled(Link)`
 
 `;
 
+const LogoNavLinkLeft = styled(LogoNavLink)`
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+`;
+
 const Nav = styled.nav`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const Controls = styled.div`
@@ -116,9 +121,9 @@ export const HeaderWrapper: FC<{
             </LogoMainLink>
             {!hideNav && (
               <>
-                <LogoNavLink href={"/"}>Menu</LogoNavLink>
-                <LogoNavLink href={"/"}>Rewards</LogoNavLink>
-                <LogoNavLink href={"/"}>Gift Cards</LogoNavLink>
+                <LogoNavLinkLeft href={"/"}>Menu</LogoNavLinkLeft>
+                <LogoNavLinkLeft href={"/"}>Rewards</LogoNavLinkLeft>
+                <LogoNavLinkLeft href={"/"}>Gift Cards</LogoNavLinkLeft>
               </>
             )}
           </Nav>
