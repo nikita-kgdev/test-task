@@ -117,7 +117,7 @@ export const BannerForm: FC<{
         />
       </Row>
       <Row>
-        <Title>Image forst:</Title>
+        <Title>Image first:</Title>
         <Checkbox
             type="checkbox"
             checked={imageFirst}

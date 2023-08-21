@@ -17,20 +17,22 @@ const Container = styled.div<{ color: string; imageFirst: boolean }>`
 
 const TextData = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 10% 50px;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
   position: relative;
   text-align: center;
   width: 50%;
+  aspect-ratio: 1/1;
   @media (max-width: 1300px) {
     padding: 3% 50px;
   }
   @media (max-width: 800px) {
     width: 100%;
+    aspect-ratio: initial;
     justify-content: flex-start;
+    gap: 10px;
     padding: 3% 20px;
   }
 `;
@@ -38,6 +40,7 @@ const TextData = styled.div`
 const Title = styled.h3`
   text-align: center;
   font-size: 50px;
+  margin: 0;
   font-weight: 700;
   @media (max-width: 1000px) {
     font-size: 28px;

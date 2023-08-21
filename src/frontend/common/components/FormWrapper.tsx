@@ -4,11 +4,15 @@ import { FC, ReactNode } from "react";
 const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   padding: 40px;
   gap: 40px;
   width: min(600px, 100%);
   margin: 0 auto;
+  @media (width < 500px) {
+    padding: 10px;
+    gap: 10px;
+  }
 `;
 
 const Title = styled.h1`

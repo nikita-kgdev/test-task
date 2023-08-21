@@ -21,6 +21,10 @@ export const SignInFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  @media (width < 500px) {
+    padding: 10px;
+    box-shadow: none;
+  }
 `;
 
 const Bottom = styled.div`
@@ -54,6 +58,14 @@ const UnderlinedLink = styled(Link)`
   }
 `;
 
+const Asterisk = styled.span`
+  color: #00754a
+`;
+
+const Message = styled.span`
+  font-size: 16px;
+`;
+
 export const SignInContainer = () => {
   const emailInput = useFormInput();
   const passwordInput = useFormInput();
@@ -78,6 +90,7 @@ export const SignInContainer = () => {
     <HeaderWrapper hideNav>
       <FormWrapper title="Login to account">
         <SignInFormContainer onSubmit={onSubmit}>
+          <Message><Asterisk>*</Asterisk> indicates required field</Message>
           <BeautifulInput
             id="login-email"
             placeholder="Email"
@@ -109,7 +122,7 @@ export const SignInContainer = () => {
               <Link href="/src/app/admin/sign-up">sign up</Link>
             </p>
             <Button $colorScheme="primary" $big>
-              Sing in
+              Sign in
             </Button>
           </Bottom>
         </SignInFormContainer>

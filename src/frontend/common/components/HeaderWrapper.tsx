@@ -1,8 +1,12 @@
-import styled from "styled-components";
-import { FC, ReactNode } from "react";
+import styled, { css } from "styled-components";
+import { FC, ReactNode, useState } from "react";
 import Link from "next/link";
 import { SiStarbucks } from "react-icons/si";
 import { useAuthContext } from "@src/frontend/common/context/AuthContext";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { BsFillGeoAltFill } from "react-icons/bs";
+import { GrClose } from "react-icons/gr";
+import { Sidebar } from '@src/frontend/common/components/Sidebar';
 
 const Header = styled.header`
   padding: 0 40px;
@@ -15,6 +19,18 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+`;
+
+const hideOnSmallScreen = css`
+  @media (width <= 850px) {
+    display: none;
+  }
+`;
+const hideOnBigScreen = css`
+  @media (width > 850px) {
+    display: none;
+  }
 `;
 
 const HeaderContent = styled.div`
@@ -30,6 +46,20 @@ const LogoMainLink = styled(Link)`
   align-items: center;
 `;
 
+const LogoNavLink = styled(Link)`
+  color: #000;
+  font-weight: 700;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: #006241;
+  }
+  ${hideOnSmallScreen}
+
+`;
+
 const Nav = styled.nav`
   display: flex;
   align-items: center;
@@ -40,7 +70,14 @@ const Controls = styled.div`
   display: flex;
   align-items: center;
   gap: 40px;
-  
+
+  ${hideOnSmallScreen}
+`;
+
+const BurgerMenu = styled.div`
+  cursor: pointer;
+  font-size: 24px;
+  ${hideOnBigScreen}
 `;
 
 const ControlButtons = styled.div`
@@ -68,6 +105,7 @@ export const HeaderWrapper: FC<{
   showStatsLink?: boolean;
 }> = ({ children, hideNav = false, showStatsLink = false }) => {
   const { user } = useAuthContext();
+  const [burgerMenuOpened, setBurgerMenuOpened] = useState(false);
   return (
     <>
       <Header>
@@ -76,10 +114,21 @@ export const HeaderWrapper: FC<{
             <LogoMainLink href="/">
               <SiStarbucks />
             </LogoMainLink>
+            {!hideNav && (
+              <>
+                <LogoNavLink href={"/"}>Menu</LogoNavLink>
+                <LogoNavLink href={"/"}>Rewards</LogoNavLink>
+                <LogoNavLink href={"/"}>Gift Cards</LogoNavLink>
+              </>
+            )}
           </Nav>
         </HeaderContent>
         {!hideNav && (
           <Controls>
+            <LogoNavLink href={"/"}>
+              <BsFillGeoAltFill fontSize={20} />
+              Find a store
+            </LogoNavLink>
             {!!user && (
               <ControlButtonBlack href="/admin/content">
                 Admin Panel
@@ -99,6 +148,10 @@ export const HeaderWrapper: FC<{
             </ControlButtons>
           </Controls>
         )}
+        <BurgerMenu onClick={() => setBurgerMenuOpened((prev) => !prev)}>
+          {burgerMenuOpened ? <GrClose /> : <GiHamburgerMenu />}
+        </BurgerMenu>
+        <Sidebar burgerMenuOpened={burgerMenuOpened} showStatsLink={showStatsLink}/>
       </Header>
       {children}
     </>
